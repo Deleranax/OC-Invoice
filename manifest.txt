@@ -1,1 +1,1 @@
-{files={{"/test.lua","/home/","test.lua"},{"/ok/test.lua","/home/t/","ok.lua"}}
+{files={{"/test.lua","/home/","test.lua"},{"/ok/test.lua","/home/t/","ok.lua"}}}
