@@ -1,1 +1,1 @@
-{files={{"/test.lua","/home/","test.lua"},{"/ok/test.lua","/home/OC-Invoice/","ok.lua"},{"/uninst000.lua","/home/OC-Invoice/","uninst000.lua"}},directories={"/home/OC-Invoice/"}}
+{files={{"/uninst000.lua","/home/OC-Invoice/","uninst000.lua"},{"/test.lua","/home/","test.lua"},{"/ok/test.lua","/home/OC-Invoice/","ok.lua"}},directories={"/home/OC-Invoice/"}}
