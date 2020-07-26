@@ -21,7 +21,7 @@
             "viewer.lua"
         }, {
             "/bin/invoice.lua",
-            "/bin/invoice.lua",
+            "/bin/",
             "invoice.lua"
         }, {
             "/sGUI.lua",
