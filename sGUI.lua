@@ -61,11 +61,11 @@ end
 function sgui.addButtons(x, y, w, h, txt, func, fcolor, bcolor)
     fcolor = fcolor or sgui.colors.black
     bcolor = bcolor or sgui.colors.white
-    table.insert(buttonList, {x, y, w, h, txt, func, fcolor, bcolor})
+    table.insert(sgui.buttonList, {x, y, w, h, txt, func, fcolor, bcolor})
 end
 
 function sgui.drawButtons()
-    for k, button in ipairs(buttonList) do
+    for k, button in ipairs(sgui.buttonList) do
         gpu.setBackground(button[8])
         gpu.setForeground(button[7])
         gpu.fill(button[1], button[2], button[3], button[4], " ")
@@ -76,7 +76,7 @@ end
 function sgui.updateButtons()
     while true do
         local evs = {term.pull("touch")}
-        for k, button in pairs(buttonList) do
+        for k, button in pairs(sgui.buttonList) do
             if evs[3] >= button[1] and evs[3] <= button[1] + button[3] and evs[4] >= button[2] and evs[3] <= button[2] + button[3] then
                 button[6]()
                 break

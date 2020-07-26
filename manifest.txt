@@ -32,4 +32,7 @@
     directories = {
         "/lib/OC-Invoice/"
     }
+    libraries = {
+        "/lib/sgui.lua"
+    }
 }

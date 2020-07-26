@@ -174,6 +174,15 @@ local function lastPage()
     end
 end
 
+local function inList(t, el)
+    for k, v in pairs(t) do
+        if v == el then
+            return true
+        end
+    end
+    return false
+end
+
 local function uninstall()
     manifest = getOnlineData(baseUrl.."/"..ownerName.."/"..repositoryName.."/"..branch.."/manifest.txt")
     drawWindow()
@@ -184,7 +193,9 @@ local function uninstall()
     local delList = {}
     
     for k, entry in ipairs(manifest["files"]) do
-        table.insert(delList, entry[2]..entry[3])
+        if not inList(manifest["libraries"]) then
+            table.insert(delList, entry[2]..entry[3])
+        end
     end
     
     for k, entry in ipairs(manifest["directories"]) do
