@@ -52,7 +52,7 @@ function sgui.middleCoords(x, y, w, h, length, line)
     return x, y
 end
 
-function sgui.addButtons(x, y, w, h, txt, func, fcolor, bcolor)
+function sgui.addButton(x, y, w, h, txt, func, fcolor, bcolor)
     fcolor = fcolor or sgui.colors.black
     bcolor = bcolor or sgui.colors.white
     return {x, y, w, h, txt, func, fcolor, bcolor}
