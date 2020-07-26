@@ -55,28 +55,26 @@ end
 function sgui.addButton(x, y, w, h, txt, func, fcolor, bcolor)
     fcolor = fcolor or sgui.colors.black
     bcolor = bcolor or sgui.colors.white
-    return {x, y, w, h, txt, func, fcolor, bcolor}
-end
-
-function sgui.drawButtons(buttonList)
-    for k, button in ipairs(buttonList) do
-        gpu.setBackground(button[8])
-        gpu.setForeground(button[7])
-        gpu.fill(button[1], button[2], button[3], button[4], " ")
-        gpu.set(button[1], button[2], button[5])
+    
+    button = {properties={x, y, w, h, txt, func, fcolor, bcolor}}
+    
+    function button.draw()
+        gpu.setBackground(button.properties[8])
+        gpu.setForeground(button.properties[7])
+        gpu.fill(button.properties[1], button.properties[2], button.properties[3], button.properties[4], " ")
+        gpu.set(button.properties[1], button.properties[2], button.properties[5])
     end
-end
-
-function sgui.updateButtons(buttonList)
+    
+    function button.update()
     while true do
         local evs = {term.pull("touch")}
-        for k, button in pairs(buttonList) do
-            if evs[3] >= button[1] and evs[3] <= button[1] + button[3] and evs[4] >= button[2] and evs[3] <= button[2] + button[3] then
-                button[6]()
-                break
-            end
+        if evs[3] >= button.properties[1] and evs[3] <= button.properties[1] + button.properties[3] and evs[4] >= button.properties[2] and evs[3] <= button.properties[2] + button.properties[3] then
+            button.properties[6]()
+            break
         end
     end
+    
+    return button
 end
 
 function sgui.drawProgressBar(x, y, w, value, maxValue, color)
