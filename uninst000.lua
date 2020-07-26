@@ -201,11 +201,11 @@ function uninstall()
         
         if result then
             local txt = "OK "..file
-            text.padRight(txt, 42)
+            txt = text.padRight(txt, 42)
             table.insert(rmList, 1, txt)
         else
             local txt = "ERR "..file
-            text.padRight(txt, 42)
+            txt = text.padRight(txt, 42)
             table.insert(rmList, 1, txt)
         end
         
