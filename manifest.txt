@@ -1,1 +1,35 @@
-{files={{"/uninst000.lua","/home/OC-Invoice/","uninst000.lua"},{"/test.lua","/home/","test.lua"},{"/ok/test.lua","/home/OC-Invoice/","ok.lua"}},directories={"/home/OC-Invoice/"}}
+{
+    files = { {
+            "/uninst000.lua",
+            "/lib/OC-Invoice/",
+            "uninst000.lua"
+        }, {
+            "/OC-Invoice/emit.lua",
+            "/lib/OC-Invoice/",
+            "emit.lua"
+        }, {
+            "/OC-Invoice/check.lua",
+            "/lib/OC-Invoice/",
+            "check.lua"
+        }, {
+            "/OC-Invoice/creator.lua",
+            "/lib/OC-Invoice/",
+            "creator.lua"
+        }, {
+            "/OC-Invoice/viewer.lua",
+            "/lib/OC-Invoice/",
+            "viewer.lua"
+        }, {
+            "/bin/invoice.lua",
+            "/bin/invoice.lua",
+            "invoice.lua"
+        }, {
+            "/sGUI.lua",
+            "/lib/",
+            "sgui.lua"
+        }
+    },
+    directories = {
+        "/lib/OC-Invoice/"
+    }
+}

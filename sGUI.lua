@@ -3,17 +3,21 @@ local component = require("component")
 local text = require("text")
 local gpu = component.gpu
 
-local blue = 0x006DC0
-local white = 0xFFFFFF
-local black = 0x000000
-local darkGray = 0x5A5A5A
-local gray = 0xE1E1E1
-local lightGray = 0xF0F0F0
-local green = 0x00B640
+sgui = {}
 
-local buttonList = {}
+sgui.colors={}
 
-function lwrite(x, y, maxLineLength, str, lineOffset, lineLimit)
+sgui.colors.blue = 0x006DC0
+sgui.colors.white = 0xFFFFFF
+sgui.colors.black = 0x000000
+sgui.colors.darkGray = 0x5A5A5A
+sgui.colors.gray = 0xE1E1E1
+sgui.colors.lightGray = 0xF0F0F0
+sgui.colors.green = 0x00B640
+
+sgui.buttonList = {}
+
+function sgui.lwrite(x, y, maxLineLength, str, lineOffset, lineLimit)
     lineOffset = lineOffset or 0
     strs = text.tokenize(str)
     local txt = ""
@@ -42,7 +46,7 @@ function lwrite(x, y, maxLineLength, str, lineOffset, lineLimit)
     return x+dy+1
 end
 
-function middleCoords(x, y, w, h, length, line)
+function sgui.middleCoords(x, y, w, h, length, line)
     length = length or 0
     line = line or 0
     local rx = math.floor(x + x + dx - (length/2))
@@ -50,17 +54,17 @@ function middleCoords(x, y, w, h, length, line)
     return x, y
 end
 
-function resetButtons()
-    buttonsListv= {}
+function sgui.resetButtons()
+    sgui.buttonsListv= {}
 end
 
-function addButtons(x, y, w, h, txt, func, fcolor, bcolor)
-    fcolor = fcolor or black
-    bcolor = bcolor or white
+function sgui.addButtons(x, y, w, h, txt, func, fcolor, bcolor)
+    fcolor = fcolor or sgui.colors.black
+    bcolor = bcolor or sgui.colors.white
     table.insert(buttonList, {x, y, w, h, txt, func, fcolor, bcolor})
 end
 
-function drawButtons()
+function sgui.drawButtons()
     for k, button in ipairs(buttonList) do
         gpu.setBackground(button[8])
         gpu.setForeground(button[7])
@@ -69,7 +73,7 @@ function drawButtons()
     end
 end
 
-function updateButtons()
+function sgui.updateButtons()
     while true do
         local evs = {term.pull("touch")}
         for k, button in pairs(buttonList) do
@@ -81,11 +85,11 @@ function updateButtons()
     end
 end
 
-function drawProgressBar(x, y, w, value, maxValue, color)
+function sgui.drawProgressBar(x, y, w, value, maxValue, color)
     local nb = math.ceil((value/maxValue) * w)
     
-    gpu.setBackground(white)
-    gpu.setForeground(black)
+    gpu.setBackground(sgui.colors.white)
+    gpu.setForeground(sgui.colors.black)
     gpu.set(x + math.floor(w/2) - 2, y - 1, math.ceil((value/maxValue) * 100).."%")
     
     gpu.setBackground(gray)
@@ -94,7 +98,7 @@ function drawProgressBar(x, y, w, value, maxValue, color)
     gpu.fill(x, y, nb, 1, " ")
 end
 
-function drawWindow(w, h, title, fcolor, bcolor, bbcolor, barSize)
+function sgui.drawWindow(w, h, title, fcolor, bcolor, bbcolor, barSize)
     
     cw, ch = gpu.getResolution()
     local x = 1
@@ -108,9 +112,9 @@ function drawWindow(w, h, title, fcolor, bcolor, bbcolor, barSize)
         y = math.floor((ch - h)/2)
     end
     
-    fcolor = fcolor or white
-    bcolor = bcolor or white
-    bbcolor = fcolor or blue
+    fcolor = fcolor or sgui.colors.white
+    bcolor = bcolor or sgui.colors.white
+    bbcolor = fcolor or sgui.colors.blue
     
     barSize = barSize or 1
     
@@ -122,3 +126,5 @@ function drawWindow(w, h, title, fcolor, bcolor, bbcolor, barSize)
     gpu.fill(x, y, w, barSize)
     gpu.set(middleCoords(x, y, w, barSize, title:len()), title)
 end
+
+return sgui
