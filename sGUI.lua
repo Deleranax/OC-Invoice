@@ -62,7 +62,8 @@ function sgui.addButton(x, y, w, h, txt, func, fcolor, bcolor)
         gpu.setBackground(button.properties[8])
         gpu.setForeground(button.properties[7])
         gpu.fill(button.properties[1], button.properties[2], button.properties[3], button.properties[4], " ")
-        gpu.set(sgui.middleCoords(button.properties[1], button.properties[2], button.properties[3], button.properties[4], button.properties[5]:len()), button.properties[5])
+        local x, y = sgui.middleCoords(button.properties[1], button.properties[2], button.properties[3], button.properties[4], button.properties[5]:len())
+        gpu.set(x, y, button.properties[5])
     end
     
     function button.update()
