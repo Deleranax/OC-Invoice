@@ -47,8 +47,8 @@ end
 function sgui.middleCoords(x, y, w, h, length, line)
     length = length or 0
     line = line or 0
-    local rx = math.floor(x + x + dx - (length/2))
-    local ry = math.floor(y + y + dy - (line/2))
+    local rx = math.floor(x + x + w - (length/2))
+    local ry = math.floor(y + y + h - (line/2))
     return x, y
 end
 
