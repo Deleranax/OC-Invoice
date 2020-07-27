@@ -78,6 +78,18 @@ function sgui.addButton(x, y, w, h, txt, func, fcolor, bcolor)
     return button
 end
 
+function updateButtons(bList)
+    while true do
+        local evs = {term.pull("touch")}
+        for k, button in pairs(bList)
+            if evs[3] >= button.properties[1] and evs[3] <= button.properties[1] + button.properties[3] and evs[4] >= button.properties[2] and evs[3] <= button.properties[2] + button.properties[3] then
+                button.properties[6]()
+                break
+            end
+        end
+    end
+end
+
 function sgui.drawProgressBar(x, y, w, value, maxValue, color)
     local nb = math.ceil((value/maxValue) * w)
     
