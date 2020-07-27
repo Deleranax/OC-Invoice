@@ -193,7 +193,7 @@ local function uninstall()
     local delList = {}
     
     for k, entry in ipairs(manifest["files"]) do
-        if not inList(manifest["libraries"]) then
+        if not inList(manifest["libraries"], entry[2]..entry[3]) then
             table.insert(delList, entry[2]..entry[3])
         end
     end
